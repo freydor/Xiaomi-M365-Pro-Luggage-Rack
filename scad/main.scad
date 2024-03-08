@@ -44,16 +44,16 @@ $fn = 50;
 position = "Display"; // [Display, Printable]
 
 // Render the frame?
-show_frame = "Yes"; // [Yes, No]
+show_frame = "No"; // [Yes, No]
 
 // Render the mudguard?
-show_mudguard = "Yes"; // [Yes, No]
+show_mudguard = "No"; // [Yes, No]
 
 // Render the mudguard bracket?
-show_top_bracket = "Yes"; // [Yes, No]
+show_top_bracket = "No"; // [Yes, No]
 
 // Render the hook?
-show_hook = "Yes"; // [Yes, No]
+show_hook = "No"; // [Yes, No]
 
 // Render the rack surface?
 show_rack_surface = "Yes"; // [Yes, No]
@@ -62,16 +62,16 @@ show_rack_surface = "Yes"; // [Yes, No]
 show_rack_left = "Yes"; // [Yes, No]
 
 // Render the right rack frame?
-show_rack_right = "Yes"; // [Yes, No]
+show_rack_right = "No"; // [Yes, No]
 
 // Render the support pins?
-show_support_pins = "Yes"; // [Yes, No]
+show_support_pins = "No"; // [Yes, No]
 
 // Render the disc guard?
-show_disc_guard = "Yes"; // [Yes, No]
+show_disc_guard = "No"; // [Yes, No]
 
 // Render the box fasteners?
-show_box_fasteners = "Yes"; // [Yes, No]
+show_box_fasteners = "No"; // [Yes, No]
 
 // Main rendering function
 rotate([0,0,0]) {

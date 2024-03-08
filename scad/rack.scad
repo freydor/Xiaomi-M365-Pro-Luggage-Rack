@@ -34,21 +34,22 @@ module rack_surface_attachment_sockets(surface_height)
 {
         // Attachment sockets (0.2mm larger than the posts)
         // Posts are 7mm high
-        move([-83,58,surface_height - 11.5 + 8]) cuboid([11.2, 12.2, 9]);
-        move([+75,58,surface_height - 11.5 + 8]) cuboid([11.2, 12.2, 9]);
-        move([-83,-58,surface_height - 11.5 + 8]) cuboid([11.2, 12.2, 9]);
-        move([+45,-58,surface_height - 11.5 + 8]) cuboid([11.2, 12.2, 9]);
+        // new width 144
+        move([-83,78.1,surface_height - 11.5 + 8]) cuboid([11.2, 12.2, 9]);
+        #move([+75,78.1,surface_height - 11.5 + 8]) cuboid([11.2, 12.2, 9]);
+        move([-83,-78.1,surface_height - 11.5 + 8]) cuboid([11.2, 12.2, 9]);
+        move([+45,-78.1,surface_height - 11.5 + 8]) cuboid([11.2, 12.2, 9]);
 
         // Attachment screw holes
-        move([-83,58,surface_height]) cyl(h=16, d=3.2);
-        move([+75,58,surface_height]) cyl(h=16, d=3.2);
-        move([-83,-58,surface_height]) cyl(h=16, d=3.2);
-        move([+45,-58,surface_height]) cyl(h=16, d=3.2);
+        move([-83,78.1,surface_height]) cyl(h=16, d=3.2);
+        move([+75,78.1,surface_height]) cyl(h=16, d=3.2);
+        move([-83,-78.1,surface_height]) cyl(h=16, d=3.2);
+        move([+45,-78.1,surface_height]) cyl(h=16, d=3.2);
 
-        move([-83,58,surface_height + 5]) cyl(h=4, d=6.2);
-        move([+75,58,surface_height + 5]) cyl(h=4, d=6.2);
-        move([-83,-58,surface_height + 5]) cyl(h=4, d=6.2);
-        move([+45,-58,surface_height + 5]) cyl(h=4, d=6.2);
+        move([-83,78.1,surface_height + 5]) cyl(h=4, d=6.2);
+        move([+75,78.1,surface_height + 5]) cyl(h=4, d=6.2);
+        move([-83,-78.1,surface_height + 5]) cyl(h=4, d=6.2);
+        move([+45,-78.1,surface_height + 5]) cyl(h=4, d=6.2);
 }
 
 module rack_box_fastener()
@@ -75,8 +76,8 @@ module rack_surface()
         move([yoffset + 102,-67,hi3]) cuboid([60,70,14]);
         move([yoffset + 102,-67,hi3+9]) cuboid([60+8,70+8,14], chamfer = 4, edges=EDGES_BOTTOM+EDGES_Z_ALL);
 
-        move([yoffset + 8,83,hi3+4]) cuboid([224 - 24,28,8]); // Left drop
-        move([yoffset -16,-83,hi3+4]) cuboid([176 - 24,28,8]); // Right drop
+        //move([yoffset + 8,83,hi3+4]) cuboid([224 - 24,28,8]); // Left drop
+        //#move([yoffset -16,-83,hi3+4]) cuboid([176 - 24,28,8]); // Right drop
 
         rack_surface_attachment_sockets(hi3);
 
@@ -91,11 +92,11 @@ module rack_surface()
         move([yoffset + 74,-43,hi3+5]) rotate([0,45,45]) cuboid([18,18,14]);
 
         // Cut outs
-        move([yoffset + 44,74,hi3]) cuboid([128,10,14]); // Left hook spacer front
-        move([yoffset - 62,74,hi3]) cuboid([60,10,14]); // Left hook spacer back
+        //#move([yoffset + 44,74,hi3]) cuboid([128,10,14]); // Left hook spacer front
+        //#move([yoffset - 62,74,hi3]) cuboid([60,10,14]); // Left hook spacer back
 
-        move([yoffset + 20,-74,hi3]) cuboid([80,10,14]); // Right hook spacer front
-        move([yoffset - 62,-74,hi3]) cuboid([60,10,14]); // Right hook spacer back
+        //#move([yoffset + 20,-74,hi3]) cuboid([80,10,14]); // Right hook spacer front
+        //#move([yoffset - 62,-74,hi3]) cuboid([60,10,14]); // Right hook spacer back
 
         move([yoffset + 10,26.75,hi3]) cuboid([60,41.5,14]); // Middle front left
         move([yoffset + 10,-26.75,hi3]) cuboid([60,41.5,14]); // Middle front right
@@ -110,8 +111,8 @@ module rack_surface()
         move([0,0,9]) {
             chm = 4;
 
-            move([yoffset + 8,83,hi3]) cuboid([224 - 24 + chm,28 + chm,14], chamfer = chm, trimcorners = false); // Left drop
-            move([yoffset -16,-83,hi3]) cuboid([176 - 24 + chm,28 + chm,14], chamfer = chm, trimcorners = false); // Right drop
+            //#move([yoffset + 8,83,hi3]) cuboid([224 - 24 + chm,28 + chm,14], chamfer = chm, trimcorners = false); // Left drop
+            //#move([yoffset -16,-83,hi3]) cuboid([176 - 24 + chm,28 + chm,14], chamfer = chm, trimcorners = false); // Right drop
 
 
             move([yoffset + 10,26.75,hi3]) cuboid([60 + chm,41.5 + chm,14], chamfer = chm, trimcorners = false); // Middle front left
@@ -159,12 +160,15 @@ module rack_frame_left()
             // Left side stays
             difference() {
                 union() {
-                    rotate([0,-30,0]) move([0,+59,80]) cuboid([14, 14,182], fillet=3, edges=EDGE_BK_LF+EDGE_BK_RT); // Back
-                    move([75,0,5]) rotate([0,0,0]) move([0,+59,69]) cuboid([14, 14,140], fillet=3, edges=EDGE_BK_LF+EDGE_BK_RT); // Front
-                }
+                    rotate([0,-30,0]) move([0,+59,105]) cuboid([14, 14,132], fillet=3, edges=EDGE_BK_LF+EDGE_BK_RT); // Back
+                    move([-83.5,118,74]) rotate([0,0,0]) move([0,-59,103]) cuboid([16, 14,65], fillet=3, edges=EDGE_BK_LF+EDGE_BK_RT); // Back
 
+                    
+                    move([75,0,15]) rotate([0,0,0]) move([0,+59,89]) cuboid([14, 14,200], fillet=3, edges=EDGE_BK_LF+EDGE_BK_RT); // Front
+                }
+                
                 // Slice top edge flat
-                move([0,60,153]) cuboid([220, 18,18]);
+                move([0,60,213]) cuboid([220, 18,18]);
             }
             
             // Cross bar
@@ -174,8 +178,8 @@ module rack_frame_left()
             rotate([180,0,0]) render_side_cover();
 
             // Attachment posts
-            move([-83,58,153 - 5.5]) cuboid([11, 12, 7], chamfer=0.5, edges=EDGES_TOP+EDGE_FR_LF+EDGE_BK_LF+EDGES_TOP+EDGE_FR_RT+EDGE_BK_RT);
-            move([+75,58,153 - 5.5]) cuboid([11, 12, 7], chamfer=0.5, edges=EDGES_TOP+EDGE_FR_LF+EDGE_BK_LF+EDGES_TOP+EDGE_FR_RT+EDGE_BK_RT);
+            move([-83,58,213 - 5.5]) cuboid([11, 12, 7], chamfer=0.5, edges=EDGES_TOP+EDGE_FR_LF+EDGE_BK_LF+EDGES_TOP+EDGE_FR_RT+EDGE_BK_RT);
+            move([+75,58,213 - 5.5]) cuboid([11, 12, 7], chamfer=0.5, edges=EDGES_TOP+EDGE_FR_LF+EDGE_BK_LF+EDGES_TOP+EDGE_FR_RT+EDGE_BK_RT);
         }
 
         // Ensure clearance for wheel nut
@@ -183,7 +187,7 @@ module rack_frame_left()
 
         // Left side stay decoration
         move([0,7.5,0]) {
-            rotate([0,-30,0]) move([0,+59,98]) cuboid([14 - 8, 2,160], chamfer = 0.5); // Back
+            //#rotate([0,-30,0]) move([0,+59,98]) cuboid([14 - 8, 2,160], chamfer = 0.5); // Back
             move([75,0,21]) rotate([0,0,0]) move([0,+59,65]) cuboid([14 - 8, 2,140], chamfer = 0.5); // Front
         }
 
@@ -196,14 +200,14 @@ module rack_frame_left()
         move([40 + offset1,0,0]) crossbar_deco();  
 
         // M3 Inserts for attachment posts
-        move([-83,58,151]) m3insert();
-        move([75,58,151]) m3insert();
+        move([-83,58,211]) m3insert();
+        move([75,58,211]) m3insert();
 
         // M3 Inserts for accessories
-        rotate([0,180,0]) {
-            move([-66 + 5,56.5,16]) m3insert();
-            move([-23 + 5,56.5,16]) m3insert();
-        }
+//        rotate([0,180,0]) {
+//            move([-66 + 5,56.5,16]) m3insert();
+//            move([-23 + 5,56.5,16]) m3insert();
+//        }
     }
 }
 
@@ -214,31 +218,33 @@ module rack_frame_right()
             // Right side stays
             difference() {
                 union() {
-                    rotate([0,-30,0]) move([0,-59,80]) cuboid([14, 14,182], fillet=3, edges=EDGE_FR_LF+EDGE_FR_RT); // Back
-                    move([45,0,13]) rotate([0,0,0]) move([0,-59,69]) cuboid([14, 14,140], fillet=3, edges=EDGE_FR_LF+EDGE_FR_RT); // Front
+                    rotate([0,-30,0]) move([0,-59,104]) cuboid([14, 14,132], fillet=3, edges=EDGE_FR_LF+EDGE_FR_RT); // Back
+                    move([-83,0,73]) rotate([0,0,0]) move([0,-59,103]) cuboid([16, 14,65], fillet=3, edges=EDGE_FR_LF+EDGE_FR_RT); // Back
+                    
+                    move([45,0,15]) rotate([0,0,0]) move([0,-59,89]) cuboid([14, 14,200], fillet=3, edges=EDGE_FR_LF+EDGE_FR_RT); // Front
                 }
 
                 // Slice top edge flat
-                move([0,-60,153]) cuboid([220, 18,18]);
+                move([0,-60,213]) cuboid([250, 18,18]);
             }
             
             // Crossbar
             move([-5,-59,100]) cuboid([104, 14,18], fillet=3, edges=EDGE_TOP_FR+EDGE_BOT_FR); 
 
             // Side cover
-            render_side_cover();
+            mirror([0,0,1]) render_side_cover();
 
             // Attachment posts
-            move([-83,-58,153 - 5.5]) cuboid([11, 12, 7], chamfer=0.5, edges=EDGES_TOP+EDGE_FR_LF+EDGE_BK_LF+EDGES_TOP+EDGE_FR_RT+EDGE_BK_RT);
-            move([+45,-58,153 - 5.5]) cuboid([11, 12, 7], chamfer=0.5, edges=EDGES_TOP+EDGE_FR_LF+EDGE_BK_LF+EDGES_TOP+EDGE_FR_RT+EDGE_BK_RT);
+            move([-83,-58,213 - 5.5]) cuboid([11, 12, 7], chamfer=0.5, edges=EDGES_TOP+EDGE_FR_LF+EDGE_BK_LF+EDGES_TOP+EDGE_FR_RT+EDGE_BK_RT);
+            move([+45,-58,213 - 5.5]) cuboid([11, 12, 7], chamfer=0.5, edges=EDGES_TOP+EDGE_FR_LF+EDGE_BK_LF+EDGES_TOP+EDGE_FR_RT+EDGE_BK_RT);
         }
 
         // Ensure clearance for wheel nut
-        wheel_nut_cutout();
+        mirror([0,0,1]) wheel_nut_cutout();
 
         // Right side stay decoration
         move([0,-7.5,0]) {
-            rotate([0,-30,0]) move([0,-59,98]) cuboid([14 - 8, 2,160], chamfer = 0.5); // Back
+            //rotate([0,-30,0]) move([0,-59,98]) cuboid([14 - 8, 2,160], chamfer = 0.5); // Back
             move([45,0,21]) rotate([0,0,0]) move([0,-59,65]) cuboid([14 - 8, 2,140], chamfer = 0.5); // Front
         }
 
@@ -252,8 +258,8 @@ module rack_frame_right()
         }
 
         // M3 Inserts for attachment posts
-        move([-83,-58,151]) m3insert();
-        move([45,-58,151]) m3insert();
+        move([-83,-58,211]) m3insert();
+        move([45,-58,211]) m3insert();
     }  
 }
 
@@ -285,3 +291,10 @@ module render_rack(show_surface, show_left, show_right, render_for_display)
         }
     }
 }
+
+//render_rack(false, false, true, false);
+render_rack(true, false, false, false);
+
+//render_rack(false, true, false,false);
+
+//move([0,0,-150]) rotate([180,0,0]) render_rack(false, true, false,false);
